@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
 
 import Paper from 'material-ui/Paper';
 
@@ -35,28 +34,34 @@ class WordCounter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      words: this.props.counter.words,
+      characters: this.props.counter.characters,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    this.handleText = this.handleText.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ text: e.target.value });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ words: nextProps.counter.words });
+    this.setState({ characters: nextProps.counter.characters });
   }
 
-  handleBlur(e) { // in editing parameter
-    if (!this.props.newParameter) {
-      this.props.onSave(e.target.value);
-    }
+  handleText(words, characters) {
+    this.props.actions.editText(this.props.counter.id, words, characters);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, counter, actions } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
-        <WordCounterHeader />
-        <TextInput />
+        <WordCounterHeader
+          deleteCounter={actions.deleteCounter}
+          id={counter.id}
+          words={this.state.words}
+          characters={this.state.characters}
+        />
+        <TextInput
+          edit={this.handleText}
+        />
       </Paper>
     );
   }
@@ -64,9 +69,8 @@ class WordCounter extends Component {
 
 WordCounter.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  onSave: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  newParameter: PropTypes.bool.isRequired,
+  counter: PropTypes.objectOf.isRequired,
+  actions: PropTypes.objectOf.isRequired,
 };
 
 export default withStyles(styles)(WordCounter);

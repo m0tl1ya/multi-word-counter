@@ -35,17 +35,11 @@ class TextInput extends Component {
       text: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleChange(e) {
     this.setState({ text: e.target.value });
-  }
-
-  handleBlur(e) { // in editing parameter
-    if (!this.props.newParameter) {
-      this.props.onSave(e.target.value);
-    }
+    this.props.edit(e.target.value.length, e.target.value.length);
   }
 
   render() {
@@ -56,10 +50,11 @@ class TextInput extends Component {
         label="With placeholder multiline"
         placeholder="Paste your text"
         multiline
+        value={this.state.text}
         className={classes.textField}
         margin="normal"
         onChange={this.handleChange}
-        onBlur={this.handleBlur}
+        autoFocus="true"
       />
     );
   }
@@ -67,7 +62,7 @@ class TextInput extends Component {
 
 TextInput.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  onSave: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   newParameter: PropTypes.bool.isRequired,
 };

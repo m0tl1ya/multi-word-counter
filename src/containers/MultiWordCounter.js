@@ -26,7 +26,7 @@ MultiWordCounter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  counters: state.parameters,
+  counters: state.counters,
 });
 
 // console.log(CreateModuleActions);

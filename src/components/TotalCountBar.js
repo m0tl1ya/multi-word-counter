@@ -29,44 +29,81 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      words: true,
+      totalWords: 0,
+      totalCharacters: 0,
     };
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {
-    this.setState({ words: !this.state.words });
+  componentWillReceiveProps(nextProps) {
+    let newTotalWords;
+    let newTotalCharacters;
+    console.log('length');
+    console.log(nextProps.counters.length);
+    console.log(nextProps.counters);
+    if (nextProps.counters.length === 1) {
+      newTotalWords = nextProps.counters[0].words;
+      newTotalCharacters = nextProps.counters[0].characters;
+    }
+    if (nextProps.counters.length === 0) {
+      newTotalWords = 0;
+      newTotalCharacters = 0;
+    }
+    if (nextProps.counters.length > 1) {
+      newTotalWords = nextProps.counters.reduce((previous, current) => previous.words + current.words);
+      newTotalCharacters = nextProps.counters.reduce((previous, current) =>
+        previous.characters + current.characters);
+
+      console.log(newTotalCharacters);
+    }
+    console.log(newTotalWords);
+    this.setState({ totalWords: newTotalWords });
+    this.setState({ totalCharacters: newTotalCharacters });
   }
+
+  // handleChange() {
+  //   this.setState({ words: !this.state.words });
+  // }
 
   render() {
-    const { classes } = this.props;
-    const { words } = this.state;
+    const { classes, refresh } = this.props;
+    const { totalWords, totalCharacters } = this.state;
     return (
       <div className={classes.root}>
         <AppBar position="static">
+          <Button
+            raised
+            color="primary"
+            className={classes.button}
+            onClick={() => refresh()}
+          >
+          Save
+          </Button>
           <Typography variant="title" color="inherit" className={classes.flex}>
-              Total
+              {totalWords}
           </Typography>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={words}
-                  onChange={this.handleChange}
-                />
-              }
-              label={words ? 'word' : 'character'}
-            />
-          </FormGroup>
         </AppBar>
       </div>
     );
   }
 }
+// <FormGroup>
+//   <FormControlLabel
+//     control={
+//       <Switch
+//         checked={words}
+//         onChange={this.handleChange}
+//       />
+//     }
+//     label={words ? 'word' : 'character'}
+//   />
+// </FormGroup>
 
 
 NavBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
+  counters: PropTypes.arrayOf.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(NavBar);
