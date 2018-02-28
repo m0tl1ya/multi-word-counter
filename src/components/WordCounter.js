@@ -45,8 +45,8 @@ class WordCounter extends Component {
     this.setState({ characters: nextProps.counter.characters });
   }
 
-  handleText(words, characters) {
-    this.props.actions.editText(this.props.counter.id, words, characters);
+  handleText(text, words, characters) {
+    this.props.actions.editText(this.props.counter.id, text, words, characters);
   }
 
   render() {
@@ -60,6 +60,7 @@ class WordCounter extends Component {
           characters={this.state.characters}
         />
         <TextInput
+          text={counter.text}
           edit={this.handleText}
         />
       </Paper>

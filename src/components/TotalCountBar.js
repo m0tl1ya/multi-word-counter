@@ -50,9 +50,8 @@ class NavBar extends Component {
       newTotalCharacters = 0;
     }
     if (nextProps.counters.length > 1) {
-      newTotalWords = nextProps.counters.reduce((previous, current) => previous.words + current.words);
-      newTotalCharacters = nextProps.counters.reduce((previous, current) =>
-        previous.characters + current.characters);
+      newTotalWords = nextProps.counters.reduce((sum, counter) => sum += counter.words, 0);
+      newTotalCharacters = nextProps.counters.reduce((sum, counter) => sum += counter.characters, 0);
 
       console.log(newTotalCharacters);
     }

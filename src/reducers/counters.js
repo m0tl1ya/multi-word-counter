@@ -8,6 +8,7 @@ import {
 const initialState = [
   {
     id: 0,
+    text: '',
     words: 0,
     characters: 0,
   },
@@ -20,6 +21,7 @@ function counters(state = initialState, action) {
         ...state,
         {
           id: state.reduce((maxId, counter) => Math.max(counter.id, maxId), -1) + 1,
+          text: '',
           words: 0,
           characters: 0,
         },
@@ -31,7 +33,7 @@ function counters(state = initialState, action) {
     case EDIT_TEXT:
       return state.map(counter =>
         counter.id === action.id ?
-        { ...counter, words: action.words, characters: action.characters } :
+        { ...counter, text: action.text, words: action.words, characters: action.characters } :
         counter);
 
     case REFRESH:

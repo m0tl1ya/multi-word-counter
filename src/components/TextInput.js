@@ -32,14 +32,14 @@ class TextInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      text: this.props.text || '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     this.setState({ text: e.target.value });
-    this.props.edit(e.target.value.length, e.target.value.length);
+    this.props.edit(e.target.value, e.target.value.length, e.target.value.length);
   }
 
   render() {
@@ -50,7 +50,7 @@ class TextInput extends Component {
         label="With placeholder multiline"
         placeholder="Paste your text"
         multiline
-        value={this.state.text}
+        value={this.props.text}
         className={classes.textField}
         margin="normal"
         onChange={this.handleChange}
@@ -64,7 +64,6 @@ TextInput.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   edit: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  newParameter: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(TextInput);
