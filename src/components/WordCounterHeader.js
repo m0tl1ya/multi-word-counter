@@ -9,20 +9,9 @@ import Switch from 'material-ui/Switch';
 
 
 const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    background: blueGrey[50], // #afbbc9
-    width: 400,
-  },
-  descField: {
-    marginLeft: theme.spacing.unit * 7,
-    marginRight: theme.spacing.unit,
-    background: blueGrey[50], // #afbbc9
-    width: 500,
-  },
   button: {
     top: '0.0em',
+    marginLeft: theme.spacing.unit * 7,
   },
 });
 

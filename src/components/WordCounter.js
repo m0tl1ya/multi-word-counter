@@ -53,16 +53,20 @@ class WordCounter extends Component {
     const { classes, counter, actions } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
-        <WordCounterHeader
-          deleteCounter={actions.deleteCounter}
-          id={counter.id}
-          words={this.state.words}
-          characters={this.state.characters}
-        />
-        <TextInput
-          text={counter.text}
-          edit={this.handleText}
-        />
+        <div>
+          <WordCounterHeader
+            deleteCounter={actions.deleteCounter}
+            id={counter.id}
+            words={this.state.words}
+            characters={this.state.characters}
+          />
+        </div>
+        <div>
+          <TextInput
+            text={counter.text}
+            edit={this.handleText}
+          />
+        </div>
       </Paper>
     );
   }

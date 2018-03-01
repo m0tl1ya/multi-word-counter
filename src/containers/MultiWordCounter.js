@@ -11,6 +11,7 @@ const MultiWordCounter = ({ counters, actions }) => (
   <div>
     <TotalCountbar
       counters={counters}
+      addCounter={actions.addCounter}
       refresh={actions.refresh}
     />
     <CountingZone

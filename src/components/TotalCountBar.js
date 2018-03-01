@@ -7,40 +7,58 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
 import Switch from 'material-ui/Switch';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import TextField from 'material-ui/TextField';
+import { MenuItem, MenuIcon } from 'material-ui/Menu';
 
+const typeOfCounter= [
+  {
+    value: 'Words',
+    label: 'Words',
+  },
+  {
+    value: 'Characters',
+    label: 'Characters',
+  },
+];
 
 const styles = theme => ({
   root: {
     width: '100%',
+    display: 'flex',
+    margin: '0.5em',
+    alignItems: 'center',
   },
-  flex: {
-    flex: 1,
+  button: {
+    margin: '0.5em',
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+  selectField: {
+    margin: '0.5em',
+  },
+  menu: {
+    width: 200,
   },
 });
 
-class NavBar extends Component {
+class TotalCountBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalWords: 0,
       totalCharacters: 0,
+      type: 'Words',
     };
+    this.handleType = this.handleType.bind(this);
     // this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     let newTotalWords;
     let newTotalCharacters;
-    console.log('length');
-    console.log(nextProps.counters.length);
-    console.log(nextProps.counters);
+    // console.log('length');
+    // console.log(nextProps.counters.length);
+    // console.log(nextProps.counters);
     if (nextProps.counters.length === 1) {
       newTotalWords = nextProps.counters[0].words;
       newTotalCharacters = nextProps.counters[0].characters;
@@ -53,35 +71,94 @@ class NavBar extends Component {
       newTotalWords = nextProps.counters.reduce((sum, counter) => sum += counter.words, 0);
       newTotalCharacters = nextProps.counters.reduce((sum, counter) => sum += counter.characters, 0);
 
-      console.log(newTotalCharacters);
+      // console.log(newTotalCharacters);
     }
-    console.log(newTotalWords);
+    // console.log(newTotalWords);
     this.setState({ totalWords: newTotalWords });
     this.setState({ totalCharacters: newTotalCharacters });
   }
 
-  // handleChange() {
-  //   this.setState({ words: !this.state.words });
-  // }
+  handleType(event) {
+    // this.props.editParameterType(id, event.target.value);
+    this.setState({
+      type: event.target.value,
+    });
+  }
 
   render() {
-    const { classes, refresh } = this.props;
+    const { classes, addCounter, refresh } = this.props;
     const { totalWords, totalCharacters } = this.state;
+    let element;
+    if (this.state.type === 'Words') {
+      if (totalWords > 0) {
+        element = (
+          <span>
+            {totalWords} words
+          </span>
+        );
+      } else {
+        element = (
+          <span>
+            {totalWords} word
+          </span>
+        );
+      }
+    }
+    if (this.state.type !== 'Words') {
+      if (totalCharacters > 0) {
+        element = (
+          <span>
+            {totalCharacters} characters
+          </span>
+        );
+      } else {
+        element = (
+          <span>
+            {totalCharacters} character
+          </span>
+        );
+      }
+    }
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Button
-            raised
-            color="primary"
-            className={classes.button}
-            onClick={() => refresh()}
-          >
-          Save
-          </Button>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-              {totalWords}
-          </Typography>
-        </AppBar>
+        <Typography variant="title" color="inherit">
+          {element}
+        </Typography>
+        <TextField
+          id="select-type"
+          select
+          className={classes.selectField}
+          value={this.state.type}
+          onChange={this.handleType}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          margin="normal"
+        >
+          {typeOfCounter.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <Button
+          variant="raised"
+          color="primary"
+          className={classes.button}
+          onClick={() => addCounter()}
+        >
+          Add
+        </Button>
+        <Button
+          variant="raised"
+          color="inherit"
+          className={classes.button}
+          onClick={() => refresh()}
+        >
+          Refresh
+        </Button>
       </div>
     );
   }
@@ -99,10 +176,11 @@ class NavBar extends Component {
 // </FormGroup>
 
 
-NavBar.propTypes = {
+TotalCountBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   counters: PropTypes.arrayOf.isRequired,
+  addCounter: PropTypes.func.isRequired,
   refresh: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(TotalCountBar);
