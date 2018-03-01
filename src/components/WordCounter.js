@@ -34,19 +34,42 @@ class WordCounter extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      text: this.props.counter.text,
       words: this.props.counter.words,
       characters: this.props.counter.characters,
+      isCounted: this.props.counter.isCounted,
     };
     this.handleText = this.handleText.bind(this);
+    this.handleState = this.handleState.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState({ text: nextProps.counter.text });
     this.setState({ words: nextProps.counter.words });
     this.setState({ characters: nextProps.counter.characters });
+    this.setState({ isCounted: nextProps.counter.isCounted });
   }
 
-  handleText(text, words, characters) {
-    this.props.actions.editText(this.props.counter.id, text, words, characters);
+  handleText(text) {
+    if (this.state.isCounted) {
+      this.props.actions.editCounter(this.props.counter.id, text, text.length, text.length, true);
+    }
+  }
+
+  handleState() {
+    if (this.state.isCounted) {
+      // this.setState({ isCounted: false });
+      this.props.actions.editCounter(this.props.counter.id, this.props.counter.text, 0, 0, false);
+    } else {
+      // this.setState({ isCounted: true });
+      this.props.actions.editCounter(
+        this.props.counter.id,
+        this.props.counter.text,
+        this.props.counter.text.length,
+        this.props.counter.text.length,
+        true
+      );
+    }
   }
 
   render() {
@@ -59,6 +82,8 @@ class WordCounter extends Component {
             id={counter.id}
             words={this.state.words}
             characters={this.state.characters}
+            switchCount={this.handleState}
+            onActive={counter.isCounted}
           />
         </div>
         <div>

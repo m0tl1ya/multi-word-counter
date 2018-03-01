@@ -35,27 +35,14 @@ class TextInput extends Component {
     super(props);
     this.state = {
       text: this.props.text || '',
-      isCounted: true,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleState = this.handleState.bind(this);
+    // this.handleSwitch = this.handleSwitch.bind(this);
   }
 
   handleChange(e) {
     this.setState({ text: e.target.value });
-    if (this.state.isCounted) {
-      this.props.edit(e.target.value, e.target.value.length, e.target.value.length);
-    }
-  }
-
-  handleState() {
-    if (this.state.isCounted) {
-      this.setState({ isCounted: false });
-      this.props.edit(this.state.text, 0, 0);
-    } else {
-      this.setState({ isCounted: true });
-      this.props.edit(this.state.text, this.state.text.length, this.state.text.length);
-    }
+    this.props.edit(e.target.value);
   }
 
   render() {

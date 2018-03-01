@@ -1,7 +1,7 @@
 import {
   ADD_COUNTER,
   DELETE_COUNTER,
-  EDIT_TEXT,
+  EDIT_COUNTER,
   REFRESH,
 } from '../actions/counterActions';
 
@@ -11,6 +11,7 @@ const initialState = [
     text: '',
     words: 0,
     characters: 0,
+    isCounted: true,
   },
 ];
 
@@ -24,16 +25,23 @@ function counters(state = initialState, action) {
           text: '',
           words: 0,
           characters: 0,
+          isCounted: true,
         },
       ];
     case DELETE_COUNTER:
       return state.filter(counter =>
         counter.id !== action.id);
 
-    case EDIT_TEXT:
+    case EDIT_COUNTER:
       return state.map(counter =>
         counter.id === action.id ?
-        { ...counter, text: action.text, words: action.words, characters: action.characters } :
+        {
+          ...counter,
+          text: action.text,
+          words: action.words,
+          characters: action.characters,
+          isCounted: action.isCounted,
+        } :
         counter);
 
     case REFRESH:

@@ -1,6 +1,6 @@
 export const ADD_COUNTER = 'ADD_COUNTER';
 export const DELETE_COUNTER = 'DELETE_COUNTER';
-export const EDIT_TEXT = 'EDIT_TEXT';
+export const EDIT_COUNTER = 'EDIT_COUNTER';
 export const REFRESH = 'REFRESH';
 
 export const addCounter = () => ({
@@ -13,12 +13,13 @@ export const deleteCounter = id => ({
 });
 
 
-export const editText = (id, text, words, characters) => ({
-  type: EDIT_TEXT,
+export const editCounter = (id, text, words, characters, isCounted) => ({
+  type: EDIT_COUNTER,
   id,
   text,
   words,
   characters,
+  isCounted,
 });
 
 

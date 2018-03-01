@@ -20,14 +20,19 @@ class WordCounterHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: true,
+      checked: this.props.onActive,
     };
-    this.handleSwitch = this.handleSwitch.bind(this);
+    // this.handleSwitch = this.handleSwitch.bind(this);
   }
 
-  handleSwitch() {
-    this.setState({ checked: !this.state.checked });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ checked: nextProps.onActive });
   }
+
+  // handleSwitch() {
+  //   this.setState({ checked: !this.state.checked });
+  //   this.props.switchCount();
+  // }
 
   render() {
     const {
@@ -35,6 +40,7 @@ class WordCounterHeader extends Component {
       id,
       words,
       characters,
+      switchCount,
       deleteCounter,
     } = this.props;
 
@@ -73,8 +79,8 @@ class WordCounterHeader extends Component {
       <div className="CounterHeader">
         {element}
         <Switch
-          checked={this.state.checked}
-          onChange={this.handleSwitch}
+          checked={this.props.onActive}
+          onChange={() => switchCount()}
         />
         <IconButton
           className={classes.deleteButton}
@@ -95,6 +101,8 @@ WordCounterHeader.propTypes = {
   words: PropTypes.number.isRequired,
   characters: PropTypes.number.isRequired,
   deleteCounter: PropTypes.func.isRequired,
+  switchCount: PropTypes.func.isRequired,
+  onActive: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(WordCounterHeader);
