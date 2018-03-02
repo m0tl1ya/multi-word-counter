@@ -52,7 +52,7 @@ class WordCounter extends Component {
 
   handleText(text) {
     if (this.state.isCounted) {
-      this.props.actions.editCounter(this.props.counter.id, text, text.length, text.length, true);
+      this.props.actions.editCounter(this.props.counter.id, text, text.split(/\s+./).length, text.length, true);
     }
   }
 
@@ -65,7 +65,7 @@ class WordCounter extends Component {
       this.props.actions.editCounter(
         this.props.counter.id,
         this.props.counter.text,
-        this.props.counter.text.length,
+        this.props.counter.text.split(/\s+./).length,
         this.props.counter.text.length,
         true
       );
