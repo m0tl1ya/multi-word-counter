@@ -83,6 +83,7 @@ class TotalCountBar extends Component {
     this.setState({
       type: event.target.value,
     });
+    this.props.switchMode.switchType(event.target.value);
   }
 
   render() {
@@ -163,17 +164,6 @@ class TotalCountBar extends Component {
     );
   }
 }
-// <FormGroup>
-//   <FormControlLabel
-//     control={
-//       <Switch
-//         checked={words}
-//         onChange={this.handleChange}
-//       />
-//     }
-//     label={words ? 'word' : 'character'}
-//   />
-// </FormGroup>
 
 
 TotalCountBar.propTypes = {
@@ -181,6 +171,7 @@ TotalCountBar.propTypes = {
   counters: PropTypes.arrayOf.isRequired,
   addCounter: PropTypes.func.isRequired,
   refresh: PropTypes.func.isRequired,
+  switchMode: PropTypes.objectOf.isRequired,
 };
 
 export default withStyles(styles)(TotalCountBar);

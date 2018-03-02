@@ -29,11 +29,6 @@ class WordCounterHeader extends Component {
     this.setState({ checked: nextProps.onActive });
   }
 
-  // handleSwitch() {
-  //   this.setState({ checked: !this.state.checked });
-  //   this.props.switchCount();
-  // }
-
   render() {
     const {
       classes,
@@ -42,10 +37,11 @@ class WordCounterHeader extends Component {
       characters,
       switchCount,
       deleteCounter,
+      displayMode,
     } = this.props;
 
     let element;
-    if (this.state.checked) {
+    if (displayMode.mode === 'Words') {
       if (words > 0) {
         element = (
           <span>
@@ -60,7 +56,7 @@ class WordCounterHeader extends Component {
         );
       }
     }
-    if (!this.state.checked) {
+    if (displayMode.mode === 'Characters') {
       if (characters > 0) {
         element = (
           <span>
@@ -103,6 +99,7 @@ WordCounterHeader.propTypes = {
   deleteCounter: PropTypes.func.isRequired,
   switchCount: PropTypes.func.isRequired,
   onActive: PropTypes.bool.isRequired,
+  displayMode: PropTypes.objectOf.isRequired,
 };
 
 export default withStyles(styles)(WordCounterHeader);

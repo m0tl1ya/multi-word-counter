@@ -21,7 +21,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     width: '35em',
-    margin: '1em'
+    margin: '1em',
     // marginLeft: '0.2em',
     // // marginLeft: '2em',
     // marginBottom: '0.9em',

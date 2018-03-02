@@ -9,6 +9,9 @@ import WordCounter from './WordCounter';
 
 
 const styles = theme => ({
+  container: {
+    margin: '1em',
+  },
   fab: {
     position: 'absolute',
     bottom: theme.spacing.unit * 2,
@@ -19,18 +22,19 @@ const styles = theme => ({
 class CountingZone extends Component {
   constructor(props) {
     super(props);
-    // this.renderParameters = this.renderParameters.bind(this);
   }
 
+
   render() {
-    const { classes, counters, actions } = this.props;
+    const { classes, counters, actions, mode } = this.props;
     // console.log(filteredParameters);
     return (
-      <div>
+      <div className={classes.container}>
         {counters.map(counter =>
           <WordCounter
             counter={counter}
             actions={actions}
+            mode={mode}
           />)}
         <Button
           variant="fab"
@@ -49,6 +53,7 @@ CountingZone.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   counters: PropTypes.arrayOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
+  mode: PropTypes.objectOf.isRequired,
 };
 
 export default withStyles(styles)(CountingZone);

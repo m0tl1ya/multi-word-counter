@@ -73,7 +73,7 @@ class WordCounter extends Component {
   }
 
   render() {
-    const { classes, counter, actions } = this.props;
+    const { classes, counter, actions, mode } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
         <div>
@@ -84,6 +84,7 @@ class WordCounter extends Component {
             characters={this.state.characters}
             switchCount={this.handleState}
             onActive={counter.isCounted}
+            displayMode={mode}
           />
         </div>
         <div>
@@ -101,6 +102,7 @@ WordCounter.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   counter: PropTypes.objectOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
+  mode: PropTypes.objectOf.isRequired,
 };
 
 export default withStyles(styles)(WordCounter);
