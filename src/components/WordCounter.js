@@ -41,10 +41,11 @@ class WordCounter extends Component {
     };
     this.handleText = this.handleText.bind(this);
     this.handleState = this.handleState.bind(this);
+    // this.countWords = this.countWords.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ text: nextProps.counter.text });
+    // this.setState({ text: nextProps.counter.text });
     this.setState({ words: nextProps.counter.words });
     this.setState({ characters: nextProps.counter.characters });
     this.setState({ isCounted: nextProps.counter.isCounted });
@@ -52,7 +53,28 @@ class WordCounter extends Component {
 
   handleText(text) {
     if (this.state.isCounted) {
-      this.props.actions.editCounter(this.props.counter.id, text, text.split(/\s+./).length, text.length, true);
+      const arrayOfWords = text.match(/\S+/g);
+      const arrayOfCharacterss = text.match(/\S/g);
+
+      let wordsOfText;
+      let characterOfText;
+      if (arrayOfWords != null) {
+        wordsOfText = arrayOfWords.length;
+      } else {
+        wordsOfText = 0;
+      }
+      if (arrayOfCharacterss != null) {
+        characterOfText = arrayOfCharacterss.length;
+      } else {
+        characterOfText = 0;
+      }
+      this.props.actions.editCounter(
+        this.props.counter.id,
+        text,
+        wordsOfText,
+        characterOfText,
+        true
+      );
     }
   }
 
@@ -62,11 +84,28 @@ class WordCounter extends Component {
       this.props.actions.editCounter(this.props.counter.id, this.props.counter.text, 0, 0, false);
     } else {
       // this.setState({ isCounted: true });
+      const arrayOfWords = this.props.counter.text.match(/\S+/g);
+      const arrayOfCharacterss = this.props.counter.text.match(/\S/g);
+
+      let wordsOfText;
+      let characterOfText;
+      if (arrayOfWords != null) {
+        wordsOfText = arrayOfWords.length;
+      } else {
+        wordsOfText = 0;
+      }
+      if (arrayOfCharacterss != null) {
+        characterOfText = arrayOfCharacterss.length;
+      } else {
+        characterOfText = 0;
+      }
       this.props.actions.editCounter(
         this.props.counter.id,
         this.props.counter.text,
-        this.props.counter.text.split(/\s+./).length,
-        this.props.counter.text.length,
+        // this.countWords(this.props.counter.text),
+        // this.countWords(this.props.counter.text),
+        wordsOfText,
+        characterOfText,
         true
       );
     }
