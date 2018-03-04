@@ -49,7 +49,7 @@ class WordCounter extends Component {
     // this.setState({ text: nextProps.counter.text });
     this.setState({ words: nextProps.counter.words });
     this.setState({ characters: nextProps.counter.characters });
-    this.setState({ allCharacters: nextProps.counter.characters });
+    this.setState({ allCharacters: nextProps.counter.allCharacters });
     this.setState({ isCounted: nextProps.counter.isCounted });
   }
 
@@ -106,8 +106,6 @@ class WordCounter extends Component {
       this.props.actions.editCounter(
         this.props.counter.id,
         this.props.counter.text,
-        // this.countWords(this.props.counter.text),
-        // this.countWords(this.props.counter.text),
         wordsOfText,
         characterOfText,
         allCharactersOfText,
