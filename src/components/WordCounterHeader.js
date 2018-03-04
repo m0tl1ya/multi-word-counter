@@ -35,6 +35,7 @@ class WordCounterHeader extends Component {
       id,
       words,
       characters,
+      textLength,
       switchCount,
       deleteCounter,
       displayMode,
@@ -71,6 +72,21 @@ class WordCounterHeader extends Component {
         );
       }
     }
+    if (displayMode.mode === 'Characters including space') {
+      if (textLength > 0) {
+        element = (
+          <span>
+            {textLength} characters
+          </span>
+        );
+      } else {
+        element = (
+          <span>
+            {textLength} character
+          </span>
+        );
+      }
+    }
     return (
       <div className="CounterHeader">
         {element}
@@ -96,6 +112,7 @@ WordCounterHeader.propTypes = {
   id: PropTypes.number.isRequired,
   words: PropTypes.number.isRequired,
   characters: PropTypes.number.isRequired,
+  textLength: PropTypes.number.isRequired,
   deleteCounter: PropTypes.func.isRequired,
   switchCount: PropTypes.func.isRequired,
   onActive: PropTypes.bool.isRequired,

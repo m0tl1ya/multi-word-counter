@@ -21,6 +21,10 @@ const typeOfCounter= [
     value: 'Characters',
     label: 'Characters',
   },
+  {
+    value: 'Characters including space',
+    label: 'Characters including space',
+  },
 ];
 
 const styles = theme => ({
@@ -47,6 +51,7 @@ class TotalCountBar extends Component {
     this.state = {
       totalWords: 0,
       totalCharacters: 0,
+      totalCharactersIncludingSpace: 0,
       type: 'Words',
     };
     this.handleType = this.handleType.bind(this);
@@ -56,26 +61,31 @@ class TotalCountBar extends Component {
   componentWillReceiveProps(nextProps) {
     let newTotalWords;
     let newTotalCharacters;
+    let newTotalCharactersIncludingSpace;
     // console.log('length');
     // console.log(nextProps.counters.length);
     // console.log(nextProps.counters);
     if (nextProps.counters.length === 1) {
       newTotalWords = nextProps.counters[0].words;
       newTotalCharacters = nextProps.counters[0].characters;
+      newTotalCharactersIncludingSpace = nextProps.counters[0].allCharacters;
     }
     if (nextProps.counters.length === 0) {
       newTotalWords = 0;
       newTotalCharacters = 0;
+      newTotalCharactersIncludingSpace = 0;
     }
     if (nextProps.counters.length > 1) {
       newTotalWords = nextProps.counters.reduce((sum, counter) => sum += counter.words, 0);
       newTotalCharacters = nextProps.counters.reduce((sum, counter) => sum += counter.characters, 0);
+      newTotalCharactersIncludingSpace = nextProps.counters.reduce((sum, counter) => sum += counter.allCharacters, 0);
 
       // console.log(newTotalCharacters);
     }
     // console.log(newTotalWords);
     this.setState({ totalWords: newTotalWords });
     this.setState({ totalCharacters: newTotalCharacters });
+    this.setState({ totalCharactersIncludingSpace: newTotalCharactersIncludingSpace });
   }
 
   handleType(event) {
@@ -88,7 +98,12 @@ class TotalCountBar extends Component {
 
   render() {
     const { classes, addCounter, refresh } = this.props;
-    const { totalWords, totalCharacters } = this.state;
+    const {
+      totalWords,
+      totalCharacters,
+      totalCharactersIncludingSpace,
+    } = this.state;
+
     let element;
     if (this.state.type === 'Words') {
       if (totalWords > 0) {
@@ -105,7 +120,7 @@ class TotalCountBar extends Component {
         );
       }
     }
-    if (this.state.type !== 'Words') {
+    if (this.state.type === 'Characters') {
       if (totalCharacters > 0) {
         element = (
           <span>
@@ -116,6 +131,21 @@ class TotalCountBar extends Component {
         element = (
           <span>
             {totalCharacters} character
+          </span>
+        );
+      }
+    }
+    if (this.state.type === 'Characters including space') {
+      if (totalCharactersIncludingSpace > 0) {
+        element = (
+          <span>
+            {totalCharactersIncludingSpace} characters (space)
+          </span>
+        );
+      } else {
+        element = (
+          <span>
+            {totalCharactersIncludingSpace} character (space)
           </span>
         );
       }

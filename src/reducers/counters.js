@@ -11,6 +11,7 @@ const initialState = [
     text: '',
     words: 0,
     characters: 0,
+    allCharacters: 0,
     isCounted: true,
   },
 ];
@@ -25,6 +26,7 @@ function counters(state = initialState, action) {
           text: '',
           words: 0,
           characters: 0,
+          allCharacters: 0,
           isCounted: true,
         },
       ];
@@ -40,6 +42,7 @@ function counters(state = initialState, action) {
           text: action.text,
           words: action.words,
           characters: action.characters,
+          allCharacters: action.allCharacters,
           isCounted: action.isCounted,
         } :
         counter);

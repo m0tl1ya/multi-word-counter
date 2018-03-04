@@ -13,12 +13,13 @@ export const deleteCounter = id => ({
 });
 
 
-export const editCounter = (id, text, words, characters, isCounted) => ({
+export const editCounter = (id, text, words, characters, allCharacters, isCounted) => ({
   type: EDIT_COUNTER,
   id,
   text,
   words,
   characters,
+  allCharacters,
   isCounted,
 });
 

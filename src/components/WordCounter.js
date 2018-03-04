@@ -37,6 +37,7 @@ class WordCounter extends Component {
       text: this.props.counter.text,
       words: this.props.counter.words,
       characters: this.props.counter.characters,
+      allCharacters: this.props.counter.characters,
       isCounted: this.props.counter.isCounted,
     };
     this.handleText = this.handleText.bind(this);
@@ -48,6 +49,7 @@ class WordCounter extends Component {
     // this.setState({ text: nextProps.counter.text });
     this.setState({ words: nextProps.counter.words });
     this.setState({ characters: nextProps.counter.characters });
+    this.setState({ allCharacters: nextProps.counter.characters });
     this.setState({ isCounted: nextProps.counter.isCounted });
   }
 
@@ -73,6 +75,7 @@ class WordCounter extends Component {
         text,
         wordsOfText,
         characterOfText,
+        text.length,
         true
       );
     }
@@ -89,6 +92,7 @@ class WordCounter extends Component {
 
       let wordsOfText;
       let characterOfText;
+      const allCharactersOfText = this.props.counter.text.length;
       if (arrayOfWords != null) {
         wordsOfText = arrayOfWords.length;
       } else {
@@ -106,6 +110,7 @@ class WordCounter extends Component {
         // this.countWords(this.props.counter.text),
         wordsOfText,
         characterOfText,
+        allCharactersOfText,
         true
       );
     }
@@ -121,6 +126,7 @@ class WordCounter extends Component {
             id={counter.id}
             words={this.state.words}
             characters={this.state.characters}
+            textLength={this.state.allCharacters}
             switchCount={this.handleState}
             onActive={counter.isCounted}
             displayMode={mode}
