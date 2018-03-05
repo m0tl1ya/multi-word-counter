@@ -15,8 +15,8 @@ const styles = theme => ({
   },
   refreshButton: {
     position: 'fixed',
-    bottom: theme.spacing.unit * 4,
-    right: theme.spacing.unit * 4,
+    bottom: theme.spacing.unit * 12,
+    right: theme.spacing.unit * 2,
   },
   addButton: {
     position: 'fixed',
@@ -30,7 +30,6 @@ class CountingZone extends Component {
     super(props);
   }
 
-
   render() {
     const { classes, counters, actions, mode } = this.props;
     // console.log(filteredParameters);
@@ -43,18 +42,18 @@ class CountingZone extends Component {
             mode={mode}
           />)}
         <Button
-          variant="refreshButton"
-          className={classes.fab}
+          variant="fab"
+          className={classes.refreshButton}
           color="primary"
-          onClick={actions.addCounter}
+          onClick={actions.refresh}
         >
           <Refresh />
         </Button>
         <Button
-          variant="addButton"
-          className={classes.fab}
+          variant="fab"
+          className={classes.addButton}
           color="primary"
-          onClick={actions.addCounter}
+          onClick={actions.addButton}
         >
           <AddIcon />
         </Button>

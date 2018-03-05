@@ -15,9 +15,12 @@ import { FormControlLabel, FormGroup } from 'material-ui/Form';
 const styles = theme => ({
   root: {
     width: '100%',
+    // backgroundColor: '#3e43b1',
+    background: 'linear-gradient(45deg, #3e43b1 30%, #7d81d2 90%)',
   },
   flex: {
     flex: 1,
+    padding: '0.5em',
   },
   menuButton: {
     marginLeft: -12,
