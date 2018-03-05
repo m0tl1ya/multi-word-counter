@@ -14,6 +14,11 @@ const styles = theme => ({
     margin: '1em',
   },
   refreshButton: {
+    color: 'white',
+    backgroundColor: '#2196F3',
+    hover: {
+      color: '#2196F3',
+    },
     position: 'fixed',
     bottom: theme.spacing.unit * 12,
     right: theme.spacing.unit * 2,
@@ -44,16 +49,15 @@ class CountingZone extends Component {
         <Button
           variant="fab"
           className={classes.refreshButton}
-          color="primary"
           onClick={actions.refresh}
         >
           <Refresh />
         </Button>
         <Button
           variant="fab"
+          color="secondary"
           className={classes.addButton}
-          color="primary"
-          onClick={actions.addButton}
+          onClick={actions.addCounter}
         >
           <AddIcon />
         </Button>

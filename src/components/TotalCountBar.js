@@ -34,8 +34,13 @@ const styles = theme => ({
     margin: '0.5em',
     alignItems: 'center',
   },
-  button: {
+  addButton: {
     margin: '0.5em',
+  },
+  refreshButton: {
+    margin: '0.5em',
+    color: 'white',
+    backgroundColor: '#2196F3',
   },
   selectField: {
     margin: '0.5em',
@@ -176,16 +181,15 @@ class TotalCountBar extends Component {
         </TextField>
         <Button
           variant="raised"
-          color="primary"
-          className={classes.button}
+          color="secondary"
+          className={classes.addButton}
           onClick={() => addCounter()}
         >
           Add
         </Button>
         <Button
           variant="raised"
-          color="inherit"
-          className={classes.button}
+          className={classes.refreshButton}
           onClick={() => refresh()}
         >
           Refresh
