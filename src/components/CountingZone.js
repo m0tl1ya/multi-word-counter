@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
+import Refresh from 'material-ui-icons/Refresh';
 
 import WordCounter from './WordCounter';
 
@@ -12,7 +13,12 @@ const styles = theme => ({
   container: {
     margin: '1em',
   },
-  fab: {
+  refreshButton: {
+    position: 'fixed',
+    bottom: theme.spacing.unit * 4,
+    right: theme.spacing.unit * 4,
+  },
+  addButton: {
     position: 'fixed',
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2,
@@ -37,7 +43,15 @@ class CountingZone extends Component {
             mode={mode}
           />)}
         <Button
-          variant="fab"
+          variant="refreshButton"
+          className={classes.fab}
+          color="primary"
+          onClick={actions.addCounter}
+        >
+          <Refresh />
+        </Button>
+        <Button
+          variant="addButton"
           className={classes.fab}
           color="primary"
           onClick={actions.addCounter}
