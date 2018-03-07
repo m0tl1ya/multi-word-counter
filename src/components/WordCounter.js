@@ -15,17 +15,17 @@ const styles = theme => ({
     paddingTop: 2,
     paddingBottom: 2,
     marginTop: theme.spacing.unit,
-    width: 600,
+    width: '80%',
     marginLeft: '1em',
     display: 'flex',
     flexWrap: 'wrap',
   }),
   textField: {
-    width: '20em',
+    width: '100%',
     marginLeft: '0.2em',
     // marginLeft: '2em',
-    marginBottom: '0.9em',
-    marginRight: theme.spacing.unit,
+    // marginBottom: '0.9em',
+    // marginRight: theme.spacing.unit,
   },
 });
 
@@ -130,7 +130,7 @@ class WordCounter extends Component {
             displayMode={mode}
           />
         </div>
-        <div>
+        <div className={classes.textField}>
           <TextInput
             text={counter.text}
             edit={this.handleText}

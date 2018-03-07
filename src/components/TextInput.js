@@ -20,7 +20,7 @@ const styles = theme => ({
   textField: {
     display: 'flex',
     flexWrap: 'wrap',
-    width: '35em',
+    width: '90%',
     margin: '1em',
     // marginLeft: '0.2em',
     // // marginLeft: '2em',
