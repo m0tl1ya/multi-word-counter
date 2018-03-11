@@ -16,9 +16,6 @@ const styles = theme => ({
   refreshButton: {
     color: 'white',
     backgroundColor: '#2196F3',
-    hover: {
-      color: '#2196F3',
-    },
     position: 'fixed',
     bottom: theme.spacing.unit * 12,
     right: theme.spacing.unit * 2,
@@ -48,6 +45,7 @@ class CountingZone extends Component {
           />)}
         <Button
           variant="fab"
+          color="primary"
           className={classes.refreshButton}
           onClick={actions.refresh}
         >

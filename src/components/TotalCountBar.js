@@ -189,6 +189,7 @@ class TotalCountBar extends Component {
         </Button>
         <Button
           variant="raised"
+          color="primary"
           className={classes.refreshButton}
           onClick={() => refresh()}
         >
