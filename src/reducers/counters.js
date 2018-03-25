@@ -20,7 +20,6 @@ function counters(state = initialState, action) {
   switch (action.type) {
     case ADD_COUNTER:
       return [
-        ...state,
         {
           id: state.reduce((maxId, counter) => Math.max(counter.id, maxId), -1) + 1,
           text: '',
@@ -29,6 +28,7 @@ function counters(state = initialState, action) {
           allCharacters: 0,
           isCounted: true,
         },
+        ...state,
       ];
     case DELETE_COUNTER:
       return state.filter(counter =>

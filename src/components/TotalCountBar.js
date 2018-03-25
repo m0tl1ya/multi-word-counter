@@ -57,7 +57,7 @@ class TotalCountBar extends Component {
       totalWords: 0,
       totalCharacters: 0,
       totalCharactersIncludingSpace: 0,
-      type: 'Words',
+      type: 'Characters',
     };
     this.handleType = this.handleType.bind(this);
     // this.handleChange = this.handleChange.bind(this);

@@ -1,7 +1,7 @@
 import { SWITCH_TYPE } from '../actions/modeActions';
 
 const initialState = {
-  mode: 'Words',
+  mode: 'Characters',
 };
 
 function mode(state = initialState, action) {
