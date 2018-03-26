@@ -1,10 +1,15 @@
-export const ADD_COUNTER = 'ADD_COUNTER';
+export const ADD_COUNTER_TOP = 'ADD_COUNTER_TOP';
+export const ADD_COUNTER_BOTTOM = 'ADD_COUNTER_BOTTOM';
 export const DELETE_COUNTER = 'DELETE_COUNTER';
 export const EDIT_COUNTER = 'EDIT_COUNTER';
 export const REFRESH = 'REFRESH';
 
-export const addCounter = () => ({
-  type: ADD_COUNTER,
+export const addCounterTop = () => ({
+  type: ADD_COUNTER_TOP,
+});
+
+export const addCounterBottom = () => ({
+  type: ADD_COUNTER_BOTTOM,
 });
 
 export const deleteCounter = id => ({

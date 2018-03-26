@@ -11,6 +11,7 @@ import Switch from 'material-ui/Switch';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import { MenuItem, MenuIcon } from 'material-ui/Menu';
+import Checkbox from 'material-ui/Checkbox';
 
 const typeOfCounter= [
   {
@@ -58,8 +59,11 @@ class TotalCountBar extends Component {
       totalCharacters: 0,
       totalCharactersIncludingSpace: 0,
       type: 'Characters',
+      checked: true,
     };
     this.handleType = this.handleType.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -99,6 +103,18 @@ class TotalCountBar extends Component {
       type: event.target.value,
     });
     this.props.switchMode.switchType(event.target.value);
+  }
+
+  handleChange = event => {
+    this.setState({ checked: event.target.checked });
+  }
+
+  handleClick() {
+    if (this.state.checked) {
+      this.props.addCounterBottom();
+    } else {
+      this.props.addCounterTop();
+    }
   }
 
   render() {
@@ -183,10 +199,19 @@ class TotalCountBar extends Component {
           variant="raised"
           color="secondary"
           className={classes.addButton}
-          onClick={() => addCounter()}
+          onClick={this.handleClick}
         >
           Add
         </Button>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checked}
+              onChange={this.handleChange}
+            />
+          }
+          label="Add Bottom"
+        />
         <Button
           variant="raised"
           color="primary"
@@ -204,7 +229,8 @@ class TotalCountBar extends Component {
 TotalCountBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   counters: PropTypes.arrayOf.isRequired,
-  addCounter: PropTypes.func.isRequired,
+  addCounterTop: PropTypes.func.isRequired,
+  addCounterBottom: PropTypes.func.isRequired,
   refresh: PropTypes.func.isRequired,
   switchMode: PropTypes.objectOf.isRequired,
 };

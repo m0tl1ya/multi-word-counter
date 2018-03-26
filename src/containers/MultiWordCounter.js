@@ -12,7 +12,8 @@ const MultiWordCounter = ({ counters, mode, actions }) => (
   <div>
     <TotalCountbar
       counters={counters}
-      addCounter={actions.counterActions.addCounter}
+      addCounterTop={actions.counterActions.addCounterTop}
+      addCounterBottom={actions.counterActions.addCounterBottom}
       refresh={actions.counterActions.refresh}
       switchMode={actions.modeActions}
     />

@@ -1,5 +1,6 @@
 import {
-  ADD_COUNTER,
+  ADD_COUNTER_TOP,
+  ADD_COUNTER_BOTTOM,
   DELETE_COUNTER,
   EDIT_COUNTER,
   REFRESH,
@@ -18,7 +19,7 @@ const initialState = [
 
 function counters(state = initialState, action) {
   switch (action.type) {
-    case ADD_COUNTER:
+    case ADD_COUNTER_TOP:
       return [
         {
           id: state.reduce((maxId, counter) => Math.max(counter.id, maxId), -1) + 1,
@@ -29,6 +30,18 @@ function counters(state = initialState, action) {
           isCounted: true,
         },
         ...state,
+      ];
+    case ADD_COUNTER_BOTTOM:
+      return [
+        ...state,
+        {
+          id: state.reduce((maxId, counter) => Math.max(counter.id, maxId), -1) + 1,
+          text: '',
+          words: 0,
+          characters: 0,
+          allCharacters: 0,
+          isCounted: true,
+        },
       ];
     case DELETE_COUNTER:
       return state.filter(counter =>
