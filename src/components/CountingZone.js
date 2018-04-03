@@ -55,7 +55,7 @@ class CountingZone extends Component {
           variant="fab"
           color="secondary"
           className={classes.addButton}
-          onClick={actions.addCounterBottom}
+          onClick={actions.addCounterBelow}
         >
           <AddIcon />
         </Button>

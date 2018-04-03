@@ -1,6 +1,6 @@
 import {
   ADD_COUNTER_TOP,
-  ADD_COUNTER_BOTTOM,
+  ADD_COUNTER_BELOW,
   DELETE_COUNTER,
   EDIT_COUNTER,
   REFRESH,
@@ -31,7 +31,7 @@ function counters(state = initialState, action) {
         },
         ...state,
       ];
-    case ADD_COUNTER_BOTTOM:
+    case ADD_COUNTER_BELOW:
       return [
         ...state,
         {

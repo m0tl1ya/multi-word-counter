@@ -111,7 +111,7 @@ class TotalCountBar extends Component {
 
   handleClick() {
     if (this.state.checked) {
-      this.props.addCounterBottom();
+      this.props.addCounterBelow();
     } else {
       this.props.addCounterTop();
     }
@@ -210,7 +210,7 @@ class TotalCountBar extends Component {
               onChange={this.handleChange}
             />
           }
-          label="Add Bottom"
+          label="Add below"
         />
         <Button
           variant="raised"
@@ -230,7 +230,7 @@ TotalCountBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   counters: PropTypes.arrayOf.isRequired,
   addCounterTop: PropTypes.func.isRequired,
-  addCounterBottom: PropTypes.func.isRequired,
+  addCounterBelow: PropTypes.func.isRequired,
   refresh: PropTypes.func.isRequired,
   switchMode: PropTypes.objectOf.isRequired,
 };

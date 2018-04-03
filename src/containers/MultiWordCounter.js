@@ -13,7 +13,7 @@ const MultiWordCounter = ({ counters, mode, actions }) => (
     <TotalCountbar
       counters={counters}
       addCounterTop={actions.counterActions.addCounterTop}
-      addCounterBottom={actions.counterActions.addCounterBottom}
+      addCounterBelow={actions.counterActions.addCounterBelow}
       refresh={actions.counterActions.refresh}
       switchMode={actions.modeActions}
     />
