@@ -78,6 +78,15 @@ class WordCounter extends Component {
         text.length,
         true
       );
+    } else {
+      this.props.actions.editCounter(
+        this.props.counter.id,
+        text,
+        0,
+        0,
+        0,
+        false
+      );
     }
   }
 
