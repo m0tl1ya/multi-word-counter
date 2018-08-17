@@ -1,0 +1,7 @@
+.dockerignore
+.git
+node_modules
+db/
+
+multi-word-counter/*
+!multi-word-counter/build
